@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal IT - Gestión de Tickets</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../admin/css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <h1><i class="fas fa-ticket-alt"></i> Portal IT - Gestión de Tickets</h1>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Admin</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard">
+            <div class="stat-card open">
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="stat-number">24</div>
+                <div class="stat-label">Abiertos</div>
+            </div>
+            <div class="stat-card in-progress">
+                <i class="fas fa-spinner"></i>
+                <div class="stat-number">15</div>
+                <div class="stat-label">En Proceso</div>
+            </div>
+            <div class="stat-card resolved">
+                <i class="fas fa-check-circle"></i>
+                <div class="stat-number">42</div>
+                <div class="stat-label">Resueltos</div>
+            </div>
+            <div class="stat-card closed">
+                <i class="fas fa-times-circle"></i>
+                <div class="stat-number">18</div>
+                <div class="stat-label">Cerrados</div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="status-filter">Estado</label>
+                <select id="status-filter">
+                    <option value="">Todos</option>
+                    <option value="abierto">Abierto</option>
+                    <option value="en-proceso">En Proceso</option>
+                    <option value="resuelto">Resuelto</option>
+                    <option value="cerrado">Cerrado</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="priority-filter">Prioridad</label>
+                <select id="priority-filter">
+                    <option value="">Todas</option>
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="date-filter">Fecha</label>
+                <input type="date" id="date-filter">
+            </div>
+            <div class="filter-group">
+                <label for="search">Buscar</label>
+                <input type="text" id="search" placeholder="ID, título o email...">
+            </div>
+        </div>
+
+        <div class="tickets-container">
+            <div class="tickets-header">
+                <h2>Tickets Recientes</h2>
+                <div>
+                    <span>Mostrando 1-10 de 99 tickets</span>
+                </div>
+            </div>
+            <table class="tickets-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Estado</th>
+                        <th>Prioridad</th>
+                        <th>Reportado por</th>
+                        <th>Fecha</th>
+                        <th>Asignado a</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ticket-id">#IT-1001</td>
+                        <td class="ticket-title">Problema con el acceso a la red</td>
+                        <td><span class="status-badge status-en-proceso">En Proceso</span></td>
+                        <td><span class="priority-badge priority-alta">Alta</span></td>
+                        <td>laura@empresa.com</td>
+                        <td>2023-05-15</td>
+                        <td>
+                            <select class="assign-select">
+                                <option value="">Sin asignar</option>
+                                <option selected value="1">Juan Pérez</option>
+                                <option value="2">María Gómez</option>
+                                <option value="3">Carlos Ruiz</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-small btn-comment" title="Agregar comentario">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="btn btn-small btn-progress" title="Marcar en progreso">
+                                    <i class="fas fa-spinner"></i>
+                                </button>
+                                <button class="btn btn-small btn-resolve" title="Marcar resuelto">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn btn-small btn-close" title="Cerrar ticket">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Más filas de tickets... -->
+                </tbody>
+            </table>
+            <div class="pagination">
+                <button disabled>&laquo;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>&raquo;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para gestión de ticket -->
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-ticket-alt"></i> Gestionar Ticket #IT-1001</h2>
+                <div class="ticket-actions">
+                    <select id="change-status" class="status-select">
+                        <option value="abierto">Abierto</option>
+                        <option selected value="en-proceso">En Proceso</option>
+                        <option value="resuelto">Resuelto</option>
+                        <option value="cerrado">Cerrado</option>
+                    </select>
+                    <select id="change-assignee" class="assign-select">
+                        <option value="">Sin asignar</option>
+                        <option selected value="1">Juan Pérez</option>
+                        <option value="2">María Gómez</option>
+                        <option value="3">Carlos Ruiz</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ticket-details">
+                <div>
+                    <div class="form-group">
+                        <label>Título</label>
+                        <p>Problema con el acceso a la red en el edificio central</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <p class="ticket-description">Desde esta mañana los equipos en el edificio central no pueden acceder a la red interna. El problema afecta a todos los departamentos.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <p>Redes</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de creación</label>
+                        <p>2023-05-15 09:24</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Última actualización</label>
+                        <p>2023-05-15 14:36</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Reportado por</label>
+                        <p>Laura Martínez (Departamento de Ventas)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ticket-comments">
+                <h3><i class="fas fa-comments"></i> Comentarios del Equipo</h3>
+                <div class="comment">
+                    <div class="comment-header">
+                        <span>Juan Pérez</span>
+                        <span>2023-05-15 14:36</span>
+                    </div>
+                    <div class="comment-content">
+                        He identificado que el problema viene del switch principal. Parece que hay un fallo en uno de los módulos.
+                    </div>
+                </div>
+                
+                <div class="add-comment">
+                    <div class="form-group">
+                        <label for="new-comment">Añadir comentario interno</label>
+                        <textarea id="new-comment" placeholder="Escribe tu comentario aquí..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-comment-submit">Agregar Comentario</button>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-danger">Cerrar Ticket</button>
+                <button type="button" class="btn btn-success">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../admin/js/script.js"></script>
+</body>
+</html>
