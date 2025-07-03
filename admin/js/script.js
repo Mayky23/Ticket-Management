@@ -1,3 +1,25 @@
+
+    // Al inicio del archivo
+    import { db } from '../../scripts/db.js';
+
+    // Ejemplo de uso:
+    async function loadTickets() {
+        const data = await db.getData();
+        renderTickets(data.tickets);
+    }
+
+    async function updateTicket(ticketId, updates) {
+        const data = await db.getData();
+        const ticketIndex = data.tickets.findIndex(t => t.id === ticketId);
+        
+        if (ticketIndex !== -1) {
+            data.tickets[ticketIndex] = { ...data.tickets[ticketIndex], ...updates };
+            await db.updateData(data);
+            return true;
+        }
+        return false;
+    }
+
 document.addEventListener('DOMContentLoaded', function() {
     // Variables globales
     const modal = document.getElementById('ticket-modal');
