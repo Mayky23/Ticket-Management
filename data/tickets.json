@@ -1,7 +1,0 @@
-{
-    "tickets": [],
-    "users": [
-        {"id": 1, "name": "Juan Pérez", "email": "juan@it.com"},
-        {"id": 2, "name": "María Gómez", "email": "maria@it.com"}
-    ]
-}
